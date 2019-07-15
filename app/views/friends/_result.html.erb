@@ -5,6 +5,7 @@
 <% end %>
 
 <% if @users %>
+<% if @users.size > 0 %>
 <div id="friend-lookup-results" class="well results-block col-md-10">
     <table class="search-results-table col-md-12">
         <tbody>
@@ -12,7 +13,7 @@
                 <tr>
                     <td><strong>Name: </strong><%= user.full_name %></td>
                     <td><strong>Email: </strong><%= user.email %></td>
-                    <td><strong>Profile: </strong><%= link_to "View profile", "#", class: "btn btn-xs btn-success" %>
+                    <td><strong>Profile: </strong><%= link_to "View profile", user_path(user), class: "btn btn-xs btn-success" %>
                     <% if current_user.not_friends_with?(user.id) %>
                     <%= link_to "Add as friend", add_friend_path(user: current_user, friend: user),
                                                 class: "btn btn-xs btn-success", method: :post %>
@@ -28,4 +29,5 @@
         </tbody>
         </table>
 </div>
+<% end %>
 <% end %>
